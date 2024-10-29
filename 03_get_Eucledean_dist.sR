@@ -1,0 +1,33 @@
+#args[1] #set working dir
+#args[2] # set the dimentions of the beads
+#args[3] #output name
+
+args = commandArgs(trailingOnly=TRUE)
+
+setwd(args[1])
+
+xyz<-read.delim(args[2], header=F, sep="\t")
+rownames(xyz)<-(xyz[,1])
+xyz[,2:4]->xyz
+
+dims<-matrix(nrow=nrow(xyz),ncol=nrow(xyz));
+ct<-1;
+for (i in 1:nrow(xyz)){
+  ct<-ct+1
+  for (e in ct:nrow(xyz)){
+    #print(e)
+    df<-rbind(xyz[i,],xyz[e,])
+    if (dist(df, method = "euclidean", diag = F, upper = FALSE, p = 2)<20.0){
+    dims[i,e]<-dist(df, method = "euclidean", diag = F, upper = FALSE, p = 2)
+    }
+  }
+  e<-ct+1
+  if(e==nrow(xyz)){
+    break
+  }
+  e<-ct+1
+  if(i %% 100 == 0){
+    print(i)
+  }
+}
+write.table(dims, args[3], row.names=F, col.names=F, sep="\t", quote=F)
