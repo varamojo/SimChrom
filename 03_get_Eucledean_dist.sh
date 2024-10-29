@@ -42,6 +42,6 @@ arg7="violin_plot_distances_chr${i}_${allel}"
 
 #Get violin plots and Wilcoxon Test
 echo "Get plot for chr${i}_${allel}"
-Rscript 03_get_violin_plots_per_chr_${ar}.R ${arg1} ${arg2} ${arg3} ${arg4} ${arg5} ${arg6} ${arg7}.svg
+Rscript 03_get_violin_plots_per_chr.R ${arg1} ${arg2} ${arg3} ${arg4} ${arg5} ${arg6} ${arg7}.svg
 done
 
