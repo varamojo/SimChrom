@@ -1,3 +1,7 @@
+install.packages("svglite")
+install.packages("ggpubr")
+install.packages("rstatix")
+install.packages("ggplot2")
 
 library(svglite)
 library(ggpubr)
